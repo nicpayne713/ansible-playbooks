@@ -1,7 +1,4 @@
-# For working at work
-FROM ubuntu:latest
-ENV http_proxy=http://proxy.cat.com:80
-ENV https_proxy=http://proxy.cat.com:80
+FROM ubuntu:20.04
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     apt-get install -y curl gnupg2 python3-pip python3-apt sshpass git openssh-client sudo && \
