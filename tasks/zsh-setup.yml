@@ -10,8 +10,7 @@
   tags: *tags_for_zsh_tasks
 
 - name: Change shell to zsh
-  become_user: root
-  shell: sudo usermod --shell /usr/bin/zsh {{ user }}
+  shell: chsh -s $(which zsh)
   tags: *tags_for_zsh_tasks
 
 - name: Check if oh-my-zsh is installed
@@ -31,7 +30,7 @@
   # when: ohmyzsh_path.stat.islnk is not defined and ohmyzsh_root_path.stat.islnk is not defined
   when: ohmyzsh_path.stat.islnk is not defined
   tags: *tags_for_zsh_tasks
-  become_user: nic
+  become_user: "{{ user }}"
 
 - name: Check if zsh-autosuggestions is installed
   stat:
