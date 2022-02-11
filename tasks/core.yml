@@ -13,6 +13,8 @@
       - gettext
       - golang
       - htop
+      - libncurses5-dev
+      - libncursesw5-dev
       - libevent-dev
       - libpthread-stubs0-dev
       - libtool
@@ -28,9 +30,11 @@
       - rename
       - silversearcher-ag
       - stow
+      - tar
       - tree
       - unzip
       - webp
+      - wget
   tags:
     - install
     - terminal
@@ -45,9 +49,17 @@
 
 # - name: install fd
 #   shell: . ~/.profile && nix-env -iA nixpkgs.fd
+#
+- name: add ~/.local
+  shell: mkdir ~/.local
+  ignore_errors: yes
+
+- name: add ~/.local/bin
+  shell: mkdir ~/.local/bin
+  ignore_errors: yes
 
 - name: Add another bin dir to system-wide $PATH.
-  become_user: root
+  become: true
   copy:
     dest: /etc/profile.d/custom-path.sh
     content: 'export "PATH=$PATH:~/.local/bin"'
