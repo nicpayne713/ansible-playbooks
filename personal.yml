@@ -1,7 +1,7 @@
 - name: "Deploy with Ansible"
   hosts: localhost
   gather_facts: true
-  # become: true
+  become: true
   become_user:  "{{ lookup('env', 'USER') }}"
   # vars:
   #   ansible_group: nic
@@ -13,6 +13,7 @@
       apt: 
         update_cache: true
         force_apt_get: true
+        state: present
       become: true
       changed_when: False
   # vars:
