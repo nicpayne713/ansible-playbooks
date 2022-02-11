@@ -27,4 +27,6 @@ WORKDIR /home/nic
 
 FROM pype
 COPY . .
+# RUN ansible-galaxy install -r requirements.yml --ignore-errors
+ENV USER=nic
 CMD ["sh", "-c", "ansible-playbook $TAGS personal.yml"]
