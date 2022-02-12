@@ -39,5 +39,3 @@
     # - include: tasks/node-setup.yml
     # - include: tasks/nvim-setup.yml
     - include: tasks/zsh-setup.yml
-
-
