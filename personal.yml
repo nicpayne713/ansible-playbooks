@@ -3,10 +3,9 @@
   gather_facts: true
   # become: true
   become_user:  "{{ lookup('env', 'USER') }}"
-  # vars:
-  #   ansible_group: nic
-  #   ansible_user: nic
   vars:
+    ansible_group: nic
+    ansible_user: nic
     user: "{{ lookup('env', 'USER') }}" # "{{ ansible_user_id }}"
   pre_tasks:
     - name: update repositories
