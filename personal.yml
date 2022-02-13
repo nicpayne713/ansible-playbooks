@@ -19,13 +19,13 @@
   # vars:
   #   user: "{{ ansible_user_id }}"
 
-  # roles:
-    # - role: markosamuli.pyenv
-    #   # had to put here to apt install dependencies but keep global user as me
-    #   become_user: root 
-    #   tags:
-    #     - core
-    #     - pyenv
+  roles:
+    - role: markosamuli.pyenv
+      # had to put here to apt install dependencies but keep global user as me
+      become_user: root 
+      tags:
+        - core
+        - pyenv
   #   - role: monolithprojects.homebrew
   #     become_user: root
   #     tags:
