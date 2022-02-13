@@ -6,6 +6,7 @@
 
 - name: Install ZSH
   when: zsh_exists is failed
+  become: true
   apt: name=zsh
   tags: *tags_for_zsh_tasks
 
@@ -80,6 +81,7 @@
 
 - name: Install Starship
   when: starship_exists is failed
+  become: true
   tags: *tags_for_zsh_tasks
   shell: |
     curl -fsSL https://starship.rs/install.sh | sh -s -- -y
@@ -229,9 +231,9 @@
     wget https://github.com/gokcehan/lf/releases/download/${LF_VERSION}/lf-linux-amd64.tar.gz -O- -q | tar -zxf - -C {{ lookup('env', 'HOME') }}/.local/bin/
   tags: *tags_for_zsh_tasks
 
-- name: include ANSIBLE_LOCALHOST_WARNING in profile
-  lineinfile:
-    dest: "{{ lookup('env', 'HOME') }}/.profile"
-    line: export ANSIBLE_LOCALHOST_WARNING=False
-    regexp: "^export ANSIBLE_LOCALHOST_WARNING"
-    state: presentd
+# - name: include ANSIBLE_LOCALHOST_WARNING in profile
+#   lineinfile:
+#     dest: "{{ lookup('env', 'HOME') }}/.profile"
+#     line: export ANSIBLE_LOCALHOST_WARNING=False
+#     regexp: "^export ANSIBLE_LOCALHOST_WARNING"
+#     state: present
