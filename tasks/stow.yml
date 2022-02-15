@@ -16,6 +16,8 @@
     dest: "{{ lookup('env', 'HOME') }}/dotfiles"
     update: no
     recursive: no  # personal needs ssh... not sure what to do about this yet
+    single_branch: yes
+    version: home
   tags:
     - install
     - terminal
@@ -23,7 +25,7 @@
     - stow
     - dotfiles
 - name: stow dotfile
-  shell: cd ~/dotfiles && ./install
+  shell: cd ~/dotfiles && ./ansible-install
   tags:
     - install
     - terminal

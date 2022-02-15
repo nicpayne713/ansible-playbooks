@@ -31,9 +31,9 @@
   #       - try_brew
   tasks:
     - include: tasks/core.yml
+    - include: tasks/stow.yml
     # - include: tasks/repos.yml
     # - include: tasks/python-setup.yml
-    # - include: tasks/stow.yml
     # - include: tasks/desktop.yml
     # - include: tasks/node-setup.yml
     # - include: tasks/nvim-setup.yml
