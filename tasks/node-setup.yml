@@ -1,5 +1,6 @@
 - name: Install nodejs and npm
   become_user: root
+  become: true
   apt:
     name: ["nodejs", "npm"]
   tags:
