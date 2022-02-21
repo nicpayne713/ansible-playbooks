@@ -1,5 +1,6 @@
 - name: Install System Packages required for nvim
-  become_user: root
+  # become_user: root
+  become: true
   apt:
     name: 
       - libtool
@@ -20,6 +21,7 @@
     repo: 'https://github.com/neovim/neovim.git'
     dest: "{{ lookup('env', 'HOME') }}/third-party/neovim"
     update: yes
+  ignore_errors: yes
 
 - name: Build neovim
   become_user: root
@@ -30,35 +32,36 @@
 
 - name: Check if pynvim venv3 exists
   stat:
-    path: "{{ lookup('env', 'HOME') }}/.config/nvim/"
+    path: "{{ lookup('env', 'HOME') }}/.config/nvim/.venv3"
   register: pynvim_venv3_exists
 
-- name: Install pynvim venv3
+- name: Create pynvim3 environment 
   when: pynvim_venv3_path.stat.islnk is not defined
   shell: |
     cd {{ lookup('env', 'HOME') }}/.config/nvim/
     python3 -m venv .venv3  --prompt nvim3
+
 - name: Install pynvim into venv3
   pip:
     name: pynvim
     virtualenv: "{{ lookup('env', 'HOME') }}/.config/nvim/.venv3"
+    virtualenv_command: python3 -m venv
+
+- name: Install black into venv3
+  pip:
+    name: black==20.8b1
+    virtualenv: "{{ lookup('env', 'HOME') }}/.config/nvim/.venv3"
 
 - name: Check if pynvim venv2 exists
   stat:
-    path: "{{ lookup('env', 'HOME') }}/.config/nvim/"
-  register: pynvim_venv2_path
+    path: "{{ lookup('env', 'HOME') }}/.config/nvim/.venv2"
+  register: pynvim_venv2_exists
 
 - name: Install neovim venv2
   when: pynvim_venv2_path.stat.islnk is not defined
   shell: |
     cd {{ lookup('env', 'HOME') }}/.config/nvim/
-    python2 -m virtualenv .venv2  --prompt nvim2
-
-- name: Install black into venv3
-  pip:
-    name: black
-    version: 20.b81
-    virtualenv: "{{ lookup('env', 'HOME') }}/.config/nvim/.venv3"
+    virtualenv -p /usr/bin/python .venv2  --prompt nvim2
 
 - name: Install pynvim into venv2
   pip:

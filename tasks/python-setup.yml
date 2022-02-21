@@ -20,6 +20,14 @@
     - install 
 
 
+- name: Install cookiecutter 
+  shell: pipx install cookiecutter --force 
+  tags:
+    - install
+    - python
+    - dotfiles
+    - nvim
+
 - name: Install pyflyby 
   shell: pipx install pyflyby --force 
   tags:
