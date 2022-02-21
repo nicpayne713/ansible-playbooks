@@ -237,3 +237,7 @@
 #     line: export ANSIBLE_LOCALHOST_WARNING=False
 #     regexp: "^export ANSIBLE_LOCALHOST_WARNING"
 #     state: present
+
+- name: reset connection to allow zshrc to be sourced for rest of setup
+  ansible.builtin.meta:
+    reset_connection
