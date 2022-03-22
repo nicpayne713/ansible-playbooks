@@ -19,9 +19,15 @@
   tags:
     - repos
 
-- name: Clone Find Kedro
+- name: Clone Blog
   ansible.builtin.git:
-    repo: 'https://github.com/WaylonWalker/find-kedro.git'
-    dest: "{{ lookup('env', 'HOME') }}/third-party/find-kedro"
+    repo: 'https://github.com/nicpayne713/nicpayne.com.git'
+    dest: "{{ lookup('env', 'HOME') }}/personal/nicpayne.com"
+    update: no
+
+- name: Clone Nord Rofi Theme
+  ansible.builtin.git:
+    repo: 'https://github.com/undiabler/nord-rofi-theme.git'
+    dest: "{{ lookup('env', 'HOME') }}/third-party/nord-rofi-theme"
     update: no
 
