@@ -19,6 +19,7 @@
       - libpthread-stubs0-dev
       - libtool
       - libtool-bin
+      - lm-sensors
       - lsof
       - lua5.1
       - neofetch
