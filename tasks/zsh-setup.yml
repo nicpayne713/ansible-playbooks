@@ -60,18 +60,23 @@
     repo: 'https://github.com/zsh-users/zsh-history-substring-search.git'
     dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/plugins/zsh-history-substring-search"
 
-- name: Check if zsh-syntax-highlighting is installed
-  tags: *tags_for_zsh_tasks
-  stat:
-    path: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
-  register: zsh_syntax_highlighting_exists
+# - name: Check if zsh-syntax-highlighting is installed
+#   tags: *tags_for_zsh_tasks
+#   stat:
+#     path: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
+#   register: zsh_syntax_highlighting_exists
 
-- name: Install zsh-syntax-highlighting
-  tags: *tags_for_zsh_tasks
-  when: zsh_syntax_highlighting_exists is failed
-  ansible.builtin.git:
-    repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
-    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
+# - name: Install zsh-syntax-highlighting
+#   tags: *tags_for_zsh_tasks
+#   when: zsh_syntax_highlighting_exists is failed
+#   ansible.builtin.git:
+#     repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
+#     dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
+
+
+- name: reset connection to allow zshrc to be sourced for rest of setup
+  ansible.builtin.meta:
+    reset_connection
 
 - name: check is starship installed
   shell: command -v starship
@@ -238,6 +243,3 @@
 #     regexp: "^export ANSIBLE_LOCALHOST_WARNING"
 #     state: present
 
-- name: reset connection to allow zshrc to be sourced for rest of setup
-  ansible.builtin.meta:
-    reset_connection

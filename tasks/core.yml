@@ -109,23 +109,23 @@
   # tags:
   #   - pipx
 
-# - name: Check if Homebrew is already installed
-#   stat:
-#     path: /usr/local/bin/brew
-#   register: b
-#   tags:
-#     - install
-#     - brew
-#     - homebrew
+- name: Check if Homebrew is already installed
+  stat:
+    path: brew 
+  register: b
+  tags:
+    - install
+    - brew
+    - homebrew
 
-# - name: Install Homebrew
-#   shell: |
-#     echo "Doing the thing!"
-#     export CI=1
-#     export NONINTERACTIVE=1
-#     /bin/bash -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-#   when: not b.stat.exists
-#   tags:
-#     - install
-#     - brew
-#     - homebrew
+- name: Install Homebrew
+  shell: |
+    echo "Doing the thing!"
+    export CI=1
+    export NONINTERACTIVE=1
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  when: not b.stat.exists
+  tags:
+    - install
+    - brew
+    - homebrew

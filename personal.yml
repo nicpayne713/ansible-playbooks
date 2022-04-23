@@ -25,16 +25,17 @@
       tags:
         - core
         - pyenv
-  #   - role: monolithprojects.homebrew
-  #     become_user: root
-  #     tags:
-  #       - try_brew
+    # - role: monolithprojects.homebrew
+    #   become_user: root
+    #   tags:
+    #     - try_brew
   tasks:
     - include: tasks/core.yml
-    # - include: tasks/stow.yml
-    # - include: tasks/zsh-setup.yml
+    - include: tasks/node-setup.yml
+    - include: tasks/cargo.yml
+    - include: tasks/stow.yml
+    - include: tasks/zsh-setup.yml
     - include: tasks/repos.yml
-    # - include: tasks/python-setup.yml
-    # - include: tasks/desktop.yml
-    # - include: tasks/node-setup.yml
+    - include: tasks/python-setup.yml
+    - include: tasks/desktop.yml
     - include: tasks/nvim-setup.yml
