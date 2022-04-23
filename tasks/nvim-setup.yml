@@ -130,7 +130,8 @@
   shell: npm i -g yaml-language-server@latest
   tags:
     - lsp
-    - yaml-lsp      
+    - yaml-lsp
+
 - name: check is bashlsp installed
   shell: command -v bash-language-server
   register: bashlsp_exists
