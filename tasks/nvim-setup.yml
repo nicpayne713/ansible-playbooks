@@ -1,6 +1,13 @@
 - name: Install System Packages required for nvim
   # become_user: root
   become: true
+  tags:
+    - install
+    - terminal
+    - dotfiles
+    - plugged
+    - neovim
+    - nvim
   apt:
     name: 
       - libtool
@@ -23,43 +30,106 @@
     update: yes
     version: v0.7.0
   ignore_errors: yes
+  tags:
+    - install
+    - terminal
+    - dotfiles
+    - plugged
+    - neovim
+    - nvim
 
 - name: Build neovim
   become_user: root
   shell: "cd {{ lookup('env', 'HOME') }}/third-party/neovim && sudo make CMAKE_BUILD_TYPE=RelWithDebInfo"
+  tags:
+    - install
+    - terminal
+    - dotfiles
+    - plugged
+    - neovim
+    - nvim
 
 - name: Install neovim
   shell: "cd {{ lookup('env', 'HOME') }}/third-party/neovim && sudo make install"
+  tags:
+    - install
+    - terminal
+    - dotfiles
+    - plugged
+    - neovim
+    - nvim
 
 - name: Check if pynvim venv3 exists
   stat:
     path: "{{ lookup('env', 'HOME') }}/.config/nvim/.venv3"
   register: pynvim_venv3_exists
+  tags:
+    - install
+    - terminal
+    - dotfiles
+    - plugged
+    - neovim
+    - nvim
 
 - name: Create pynvim3 environment 
   when: pynvim_venv3_path.stat.islnk is not defined
+  tags:
+    - install
+    - terminal
+    - dotfiles
+    - plugged
+    - neovim
+    - nvim
   shell: |
     cd {{ lookup('env', 'HOME') }}/.config/nvim/
     python3 -m venv .venv3  --prompt nvim3
 
 - name: Install pynvim into venv3
+  tags:
+    - install
+    - terminal
+    - dotfiles
+    - plugged
+    - neovim
+    - nvim
   pip:
     name: pynvim
     virtualenv: "{{ lookup('env', 'HOME') }}/.config/nvim/.venv3"
     virtualenv_command: python3 -m venv
 
 - name: Check if pynvim venv2 exists
+  tags:
+    - install
+    - terminal
+    - dotfiles
+    - plugged
+    - neovim
+    - nvim
   stat:
     path: "{{ lookup('env', 'HOME') }}/.config/nvim/.venv2"
   register: pynvim_venv2_exists
 
 - name: Install neovim venv2
   when: pynvim_venv2_path.stat.islnk is not defined
+  tags:
+    - install
+    - terminal
+    - dotfiles
+    - plugged
+    - neovim
+    - nvim
   shell: |
     cd {{ lookup('env', 'HOME') }}/.config/nvim/
     virtualenv -p /usr/bin/python .venv2  --prompt nvim2
 
 - name: Install pynvim into venv2
+  tags:
+    - install
+    - terminal
+    - dotfiles
+    - plugged
+    - neovim
+    - nvim
   pip:
     name: pynvim
     virtualenv: "{{ lookup('env', 'HOME') }}/.config/nvim/.venv2"
@@ -105,8 +175,14 @@
 - name: install python lsp
   when: pylsp_path.stat.islnk is not defined
   tags:
-    -lsp
+    - lsp
     - python-lsp
+    - install
+    - terminal
+    - dotfiles
+    - plugged
+    - neovim
+    - nvim
   block:
   - name: Setup python-lsp-server
     shell: pipx install 'python-lsp-server[all]' --force
@@ -124,6 +200,7 @@
   tags:
     - lsp
     - yaml-lsp
+    - nvim
 
 - name: Setup yaml language server
   when: yamllsp_path.stat.islnk is not defined
@@ -139,6 +216,7 @@
   tags:
     - lsp
     - bash-lsp
+    - nvim
 
 - name: Setup bash language server
   when: bashlsp_path.stat.islnk is not defined
@@ -146,6 +224,7 @@
   tags:
     - lsp
     - bash-lsp
+    - nvim
 
 - name: Setup jedi-language-server
   shell: pipx install jedi-language-server --force
