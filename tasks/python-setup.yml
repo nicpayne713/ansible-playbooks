@@ -28,10 +28,3 @@
     - dotfiles
     - nvim
 
-- name: Install pyflyby 
-  shell: pipx install pyflyby --force 
-  tags:
-    - install
-    - python
-    - dotfiles
-    - nvim
