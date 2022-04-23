@@ -48,11 +48,6 @@
     virtualenv: "{{ lookup('env', 'HOME') }}/.config/nvim/.venv3"
     virtualenv_command: python3 -m venv
 
-- name: Install black into venv3
-  pip:
-    name: black==20.8b1
-    virtualenv: "{{ lookup('env', 'HOME') }}/.config/nvim/.venv3"
-
 - name: Check if pynvim venv2 exists
   stat:
     path: "{{ lookup('env', 'HOME') }}/.config/nvim/.venv2"
@@ -69,23 +64,23 @@
     name: pynvim
     virtualenv: "{{ lookup('env', 'HOME') }}/.config/nvim/.venv2"
 
-- name: Neovim Plugin Development 1
-  become_user: root
-  apt: name=luarocks
-  tags:
-    - install
-    - terminal
-    - neovim
-    - nvim
+# - name: Neovim Plugin Development 1
+#   become_user: root
+#   apt: name=luarocks
+#   tags:
+#     - install
+#     - terminal
+#     - neovim
+#     - nvim
 
-- name: Neovim Plugin Development 2 luacheck
-  shell: luarocks install luacheck
-  become_user: root
-  tags:
-    - install
-    - terminal
-    - neovim
-    - nvim
+# - name: Neovim Plugin Development 2 luacheck
+#   shell: luarocks install luacheck
+#   become_user: root
+#   tags:
+#     - install
+#     - terminal
+#     - neovim
+#     - nvim
 
 - name: Install Vim-Plug
   shell: curl -fLo {{ lookup('env', 'HOME') }}/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
