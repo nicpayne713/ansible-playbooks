@@ -21,8 +21,8 @@
 
 - name: Clone Blog
   ansible.builtin.git:
-    repo: 'https://github.com/nicpayne713/nicpayne.com.git'
-    dest: "{{ lookup('env', 'HOME') }}/personal/nicpayne.com"
+    repo: 'https://github.com/nicpayne713/mental-data-lake.com.git'
+    dest: "{{ lookup('env', 'HOME') }}/personal/mental-data-lake.com"
     update: no
 
 - name: Clone Nord Rofi Theme
