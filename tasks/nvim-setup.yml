@@ -166,3 +166,13 @@
     - neovim
     - nvim
     - python-lsp
+
+- name: Setup treesitter
+  shell: cargo install tree-sitter-cliV
+  tags:
+    - install
+    - terminal
+    - neovim
+    - nvim
+
+
