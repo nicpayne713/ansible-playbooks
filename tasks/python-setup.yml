@@ -7,6 +7,7 @@
     owner: "{{ ansible_user}}"
     group: "{{ ansible_group}}"
   tags:
+    - python
     - pyenv
     - permissions
     - core
