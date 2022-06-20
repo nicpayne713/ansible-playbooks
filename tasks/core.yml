@@ -74,6 +74,8 @@
   register: pipx_exists
   ignore_errors: yes
 
+    # make sure pipx gets on PATH somehow?
+
 - name: pipx
   when: pipx_exists is failed
   pip:
@@ -123,3 +125,9 @@
     - install
     - brew
     - homebrew
+
+- name: Install copier
+  shell: ~/.local/bin/pipx install --pip-args pre copier --force
+  tags:
+    - copier
+    - install
