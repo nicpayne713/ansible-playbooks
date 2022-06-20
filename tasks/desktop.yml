@@ -236,7 +236,7 @@
     - desktop
     - theme
 
-- name: Install speedscope
-  community.general.npm:
-    name: speedscope
-    global: yes
+# - name: Install speedscope
+#   community.general.npm:
+#     name: speedscope
+#     global: yes
