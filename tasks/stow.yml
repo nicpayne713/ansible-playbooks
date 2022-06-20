@@ -22,11 +22,11 @@
     - core
     - stow
     - dotfiles
-- name: stow dotfile
-  shell: cd ~/dotfiles && ./ansible-install
-  tags:
-    - install
-    - terminal
-    - core
-    - stow
-    - dotfiles
+# - name: stow dotfile
+#   shell: cd ~/dotfiles && ./ansible-install
+#   tags:
+#     - install
+#     - terminal
+#     - core
+#     - stow
+#     - dotfiles
