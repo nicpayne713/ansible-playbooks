@@ -73,10 +73,10 @@
 #     repo: 'https://github.com/zsh-users/zsh-syntax-highlighting.git'
 #     dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
 
-
-- name: reset connection to allow zshrc to be sourced for rest of setup
-  ansible.builtin.meta:
-    reset_connection
+  # TODO: figure out how to do this
+# - name: reset connection to allow zshrc to be sourced for rest of setup
+#   ansible.builtin.meta:
+#     reset_connection
 
 - name: check is starship installed
   shell: command -v starship
