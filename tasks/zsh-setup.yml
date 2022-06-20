@@ -32,7 +32,7 @@
   # when: ohmyzsh_path.stat.islnk is not defined and ohmyzsh_root_path.stat.islnk is not defined
   when: ohmyzsh_path.stat.islnk is not defined
   tags: *tags_for_zsh_tasks
-  become_user: nic 
+  become_user: "{{ ansible_user }}" 
 
 - name: Check if zsh-autosuggestions is installed
   stat:
