@@ -1,13 +1,13 @@
 - name: "Deploy with Ansible"
   hosts: localhost
   gather_facts: true
-  # become: true
-  become_user:  "{{ lookup('env', 'USER') }}"
   vars:
     ansible_group: nic
     ansible_user: nic
-    user: "{{ lookup('env', 'USER') }}" # "{{ ansible_user_id }}"
   pre_tasks:
+    - import_tasks: tasks/users.yml
+      tags: users
+
     - name: update repositories
       apt: 
         update_cache: true
@@ -15,8 +15,6 @@
         state: present
       become: true
       changed_when: False
-  # vars:
-  #   user: "{{ ansible_user_id }}"
 
   roles:
     - role: markosamuli.pyenv
@@ -30,12 +28,21 @@
     #   tags:
     #     - try_brew
   tasks:
-    - include: tasks/core.yml
-    - include: tasks/node-setup.yml
-    - include: tasks/cargo.yml
-    - include: tasks/stow.yml
-    - include: tasks/zsh-setup.yml
-    - include: tasks/repos.yml
-    - include: tasks/python-setup.yml
-    - include: tasks/desktop.yml
-    - include: tasks/nvim-setup.yml
+    - import_tasks: tasks/core.yml
+      tags: core
+    - import_tasks: tasks/node-setup.yml
+      tags: node
+    - import_tasks: tasks/cargo.yml
+      tags: cargo
+    - import_tasks: tasks/stow.yml
+      tags: stow
+    - import_tasks: tasks/zsh-setup.yml
+      tags: zsh
+    - import_tasks: tasks/repos.yml
+      tags: repos
+    - import_tasks: tasks/python-setup.yml
+      tags: python
+    - import_tasks: tasks/desktop.yml
+      tags: desktop
+    - import_tasks: tasks/nvim-setup.yml
+      tags: nvim
