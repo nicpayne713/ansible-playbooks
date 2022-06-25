@@ -8,13 +8,13 @@ pyenv_python37_version: "3.7.4"
 pyenv_python38_version: "3.8.11"
 pyenv_python39_version: "3.9.8"
 pyenv_python310_version: "3.10.0"
-pyenv_python311_version: "3.11-dev"
+# pyenv_python311_version: "3.11-dev"
 pyenv_python_versions:
   - "{{ pyenv_python37_version }}"
   - "{{ pyenv_python38_version }}"
   - "{{ pyenv_python39_version }}"
   - "{{ pyenv_python310_version }}"
-  - "{{ pyenv_python311_version }}"
+  # - "{{ pyenv_python311_version }}"
 pyenv_global: "{{ pyenv_python38_version }}"
 
 pyenv_virtualenvwrapper: false
