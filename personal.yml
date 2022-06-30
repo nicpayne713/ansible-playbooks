@@ -1,6 +1,7 @@
 - name: "Deploy with Ansible"
   hosts: localhost
   gather_facts: true
+  become: true
   vars:
     ansible_group: nic
     ansible_user: nic
